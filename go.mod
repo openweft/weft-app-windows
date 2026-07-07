@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	fyne.io/systray v1.11.0
-	github.com/openweft/weft-app-core v0.0.0-20260607093739-70e9dcfc325b
+	github.com/openweft/weft-app-core v0.1.0
 	github.com/webview/webview_go v0.0.0-20240831120633-6173450d4dd6
 	golang.org/x/sys v0.45.0
 	golang.org/x/term v0.43.0
@@ -25,5 +25,3 @@ require (
 	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
 	gvisor.dev/gvisor v0.0.0-20250503011706-39ed1f5ac29c // indirect
 )
-
-replace github.com/openweft/weft-app-core => ../weft-app-core
