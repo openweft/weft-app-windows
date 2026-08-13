@@ -188,7 +188,7 @@ func storeSSHPassphraseAndExit(keyPath string) error {
 	if err := sshPassphraseSet(abs, pp); err != nil {
 		return err
 	}
-	fmt.Fprintf(os.Stderr, "weft-app: passphrase cached in Credential Manager (target=%s\\%s)\n", sshPassphraseService, abs)
+	fmt.Fprintf(os.Stderr, "weft-app: passphrase cached in the credential vault (service=%s account=%s)\n", sshPassphraseService, abs)
 	return nil
 }
 
