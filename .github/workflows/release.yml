@@ -20,6 +20,12 @@ jobs:
   msix:
     name: MSIX (Windows)
     runs-on: windows-latest
+    # The secrets context is not available in a step `if`, so surface them as
+    # job-level env and test that instead. Reading them here is what makes
+    # `env.WINDOWS_CERT_PFX` visible to the condition below.
+    env:
+      WINDOWS_CERT_PFX: ${{ secrets.WINDOWS_CERT_PFX }}
+      WINDOWS_CERT_PASSWORD: ${{ secrets.WINDOWS_CERT_PASSWORD }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -36,11 +42,8 @@ jobs:
 
       # Signing runs only when the cert secret is present.
       - name: Sign MSIX
-        if: ${{ secrets.WINDOWS_CERT_PFX != '' }}
+        if: env.WINDOWS_CERT_PFX != ''
         shell: pwsh
-        env:
-          WINDOWS_CERT_PFX: ${{ secrets.WINDOWS_CERT_PFX }}
-          WINDOWS_CERT_PASSWORD: ${{ secrets.WINDOWS_CERT_PASSWORD }}
         run: |
           Write-Host "TODO - decode WINDOWS_CERT_PFX and run: signtool sign /fd SHA256 dist\WeftApp.msix"
 
